@@ -1,3 +1,8 @@
+
+
+
+
+
 * {
   margin: 0;
   padding: 0;
@@ -27,14 +32,26 @@ body {
   line-height: 1.6;
 }
 
-/*SECCIÓN DE LOGIN */
+/*SECCIÓN DE LOGIN  */
 .login-container {
   display: grid;
+  
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
+  font-family: 'Times New Roman', Times, serif;
   background: linear-gradient(135deg, #dcdfee 0%, #16139b 50%, #f093fb 100%);
   position: relative;
   overflow: hidden;
+}
+.login-container,
+.right-panel input,
+.right-panel button {
+  font-family: "RobotoCondensed", sans-serif;
+  font-weight: 400;
+}
+
+.right-panel h2 {
+  font-weight: 800; /* títulos fuertes */
 }
 
 /* Efecto de círculos decorativos */
@@ -62,6 +79,18 @@ body {
   animation: float 6s ease-in-out infinite reverse;
 }
 
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-30px) scale(1.05);
+  }
+}
+
 /* Panel Izquierdo - Logo */
 .left-panel {
   display: flex;
@@ -86,6 +115,18 @@ body {
 
 .left-panel img:hover {
   transform: scale(1.05) rotate(2deg);
+}
+
+@keyframes logoFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 .left-panel p {
@@ -120,6 +161,18 @@ body {
   animation: slideIn 0.6s ease-out;
 }
 
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .right-panel h2 {
   font-size: 2.25rem;
   margin-bottom: 0.5rem;
@@ -141,7 +194,7 @@ body {
   font-weight: 400;
 }
 
-/*  efecto */
+/* Inputs efecto */
 .right-panel input {
   width: 100%;
   padding: 1rem 1.25rem;
@@ -153,6 +206,7 @@ body {
   background-color: #f8fafc;
   font-family: 'Inter', sans-serif;
 }
+
 .right-panel input:focus {
   outline: none;
   border-color: #667eea;
@@ -209,6 +263,34 @@ body {
   box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
 }
 
+/* Responsive */
+@media (max-width: 968px) {
+  .login-container {
+    grid-template-columns: 1fr;
+  }
+
+  .left-panel {
+    display: none;
+  }
+
+  .right-panel form {
+    padding: 2.5rem;
+  }
+}
+
+/* Animación de carga */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
 /*NAVBAR*/
 .navbar {
   display: flex;
@@ -263,6 +345,19 @@ body {
   color: var(--primary-color);
   transform: translateY(-2px);
 }
+.navbar,
+.nav-links,
+.clinic-name {
+  font-family: "RobotoCondensed", sans-serif;
+  font-weight: 600;
+}
+button {
+  font-family: "RobotoCondensed", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+
 
 /* PERFIL*/
 .profile {
@@ -357,6 +452,14 @@ body {
   align-items: center;
 
 }
+.home-welcome h1 {
+  font-family: "RobotoCondensed", sans-serif;
+  font-weight: 800;
+}
+
+.welcome-desc {
+  font-weight: 400;
+}
 
 /* ONDA SUPERIOR */
 .home-background::before {
@@ -387,7 +490,7 @@ body {
 }
 
 
-/*CONTENIDO INTERNO */
+/* CONTENIDO INTERNO */
 .home-container {
   width: 90%;
   height: 100%;
@@ -395,6 +498,68 @@ body {
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* VIDEO */
+.home-video {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.home-video video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* BIENVENIDA derecha */
+.home-welcome {
+  width: 100%;
+  height: 100%;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #e8eaf0;
+}
+
+.home-welcome h1 {
+  font-size: 50px;
+  font-weight: 700;
+  color: #a81818;
+  margin-bottom: 100px;
+}
+
+.welcome-desc {
+  font-size: 20px;
+  color: #242121;
+  margin-bottom: 20px;
+}
+
+
+
+/* CALENDARIO */
+.welcome-calendar {
+  width: 45%;
+  padding: 5px;
+  font-size: 12px;
+  border-radius: 10px;
+  border: 2px solid #c01212;
+  background: white;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.welcome-calendar:hover {
+  background: #e6eeff;
+  border-color: #1a54e8;
+}
+
+.welcome-calendar:focus {
+  border-color: #153dbb;
+  box-shadow: 0 0 6px rgba(40, 90, 255, 0.4);
 }
 
 
@@ -541,6 +706,7 @@ select {
 .react-datepicker__navigation:hover .react-datepicker__navigation-icon::before {
   border-color: #a80000;
 }
+
 
 /*SECCIÓN DE GINECOLOGÍA  */
 
@@ -841,7 +1007,10 @@ select {
   font-size: 15px;
   margin-bottom: 5px;
 }
-/*paciente lista */
+
+
+
+/* ========== SECCION LISTA DE PACIENTES ========== */
 .pacientes-list-container {
     padding: 20px;
     max-width: 1400px;
@@ -995,6 +1164,7 @@ select {
     color: #6c757d;
     font-size: 14px;
 }
+
 /* Responsive */
 @media (max-width: 768px) {
     .pacientes-header {
@@ -1170,6 +1340,8 @@ select {
     font-size: 2rem;
   }
 }
+
+
 
 @media (max-width: 480px) {
   .right-panel form {
