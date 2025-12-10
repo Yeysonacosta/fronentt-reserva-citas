@@ -1,16 +1,7 @@
 import React from "react";
-import FilaPaciente from "../molecules/FilaPacienteGinecologia";
+import FilaPacienteGinecologia from "../molecules/FilaPacienteGinecologia";
 
-export default function TablaPacientes({ 
-    patients, 
-    onEliminar, 
-    onEditar,
-    editingIndex,
-    editForm,
-    onEditChange,
-    onGuardar,
-    onCancelar
-}) {
+export default function TablaPacientesGinecologia({ patients }) {
     return (
         <div className="tabla-envoltura">
             <div className="tabla-ginecontainer">
@@ -18,6 +9,7 @@ export default function TablaPacientes({
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Foto</th>
                             <th>Nombre</th>
                             <th>Apellidos</th>
                             <th>DNI</th>
@@ -25,29 +17,22 @@ export default function TablaPacientes({
                             <th>Dirección</th>
                             <th>Fecha y Hora</th>
                             <th>Tipo de Cita</th>
-                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         {patients.map((patient, index) => (
-                            <FilaPaciente
+                            <FilaPacienteGinecologia
                                 key={index}
                                 patient={patient}
                                 index={index}
-                                onEliminar={onEliminar}
-                                onEditar={onEditar}
-                                isEditing={editingIndex === index}
-                                editForm={editForm}
-                                onEditChange={onEditChange}
-                                onGuardar={onGuardar}
-                                onCancelar={onCancelar}
                             />
                         ))}
                     </tbody>
                 </table>
             </div>
+
             <div className="tabla-ginefooter">
-                Total de pacientes: <strong>{patients.length}</strong>
+                Total de pacientes: <strong>{patients.length}</strong> / 80
             </div>
         </div>
     );

@@ -29,8 +29,8 @@ export default function Ginecologia() {
     };
 
     const agregarPaciente = () => {
-        if (!form.nombre || !form.apellido || !form.dni) {
-            alert("Complete los campos obligatorios");
+        if (patients.length >= 80) {
+            alert("Solo se pueden registrar hasta 80 pacientes");
             return;
         }
 
@@ -56,7 +56,7 @@ export default function Ginecologia() {
         });
     };
 
-    // ✅ AHORA SÍ NAVEGA A LA TABLA
+ 
     const verPacientes = () => {
         navigate("/pacientes-ginecologia");
     };
