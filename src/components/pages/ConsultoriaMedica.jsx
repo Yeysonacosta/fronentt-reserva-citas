@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
+
 registerLocale("es", es);
 
-
 export default function ConsultoriaMedica() {
+    const navigate = useNavigate();
+
     const [form, setForm] = useState({
         nombre: "",
         apellido: "",
@@ -31,8 +34,12 @@ export default function ConsultoriaMedica() {
             return;
         }
 
-        const updated = [...patients, form];
+        if (patients.length >= 80) {
+            alert("Solo se pueden registrar hasta 80 pacientes");
+            return;
+        }
 
+        const updated = [...patients, form];
         localStorage.setItem("consultoria_patients", JSON.stringify(updated));
         setPatients(updated);
 
@@ -50,46 +57,85 @@ export default function ConsultoriaMedica() {
     };
 
     const verPacientes = () => {
-        alert("Aquí luego mostraremos una tabla completa de pacientes");
+        navigate("/consultoria/pacientes");
     };
 
     return (
         <div className="consultoria-container">
+
             {/* IMAGEN */}
             <div className="consultoria-imagen-box">
-                <img src="public/img/consultoria.jpg" alt="Consultoria Médica" className="consultoria-imagen" />
+                <img
+                    src="/img/consultoria.jpg"
+                    alt="Consultoría Médica"
+                    className="consultoria-imagen"
+                />
             </div>
 
             {/* CALENDARIO */}
             <div className="calendar-box">
                 <DatePicker
                     selected={new Date()}
-                    onChange={() => { }}
+                    onChange={() => {}}
                     inline
                     locale="es"
-                    dateFormat="dd 'de' MMM yyy"
                 />
             </div>
 
             {/* FORMULARIO */}
             <div className="form-box">
+
                 <div className="form-row">
-                    <input name="nombre" value={form.nombre} onChange={handleChange} placeholder="Nombre" />
-                    <input name="apellido" value={form.apellido} onChange={handleChange} placeholder="Apellidos" />
+                    <input
+                        name="nombre"
+                        value={form.nombre}
+                        onChange={handleChange}
+                        placeholder="Nombre"
+                    />
+                    <input
+                        name="apellido"
+                        value={form.apellido}
+                        onChange={handleChange}
+                        placeholder="Apellidos"
+                    />
                 </div>
 
                 <div className="form-row">
-                    <input name="dni" value={form.dni} onChange={handleChange} placeholder="DNI" />
-                    <input name="telefono" value={form.telefono} onChange={handleChange} placeholder="Teléfono" />
+                    <input
+                        name="dni"
+                        value={form.dni}
+                        onChange={handleChange}
+                        placeholder="DNI"
+                    />
+                    <input
+                        name="telefono"
+                        value={form.telefono}
+                        onChange={handleChange}
+                        placeholder="Teléfono"
+                    />
                 </div>
 
-                <input name="direccion" value={form.direccion} onChange={handleChange} placeholder="Dirección" className="form-input" />
+                <input
+                    name="direccion"
+                    value={form.direccion}
+                    onChange={handleChange}
+                    placeholder="Dirección"
+                />
 
                 <label>Fecha y hora:</label>
-                <input type="datetime-local" name="fechaHora" value={form.fechaHora} onChange={handleChange} className="form-input" />
+                <input
+                    type="datetime-local"
+                    name="fechaHora"
+                    value={form.fechaHora}
+                    onChange={handleChange}
+                />
 
-                <label>Tipo de Cita:</label>
-                <select name="tipoCita" value={form.tipoCita} onChange={handleChange} className="form-input">
+                <label>Tipo de cita:</label>
+                <select
+                    name="tipoCita"
+                    value={form.tipoCita}
+                    onChange={handleChange}
+                >
                     <option value="control">Control</option>
                     <option value="emergencia">Emergencia</option>
                     <option value="primera vez">Primera vez</option>
@@ -98,8 +144,9 @@ export default function ConsultoriaMedica() {
 
                 <div className="form-buttons">
                     <button onClick={agregarPaciente}>Agregar</button>
-                    <button onClick={verPacientes}>Ver</button>
+                    <button onClick={verPacientes}>Ver pacientes</button>
                 </div>
+
             </div>
         </div>
     );
